@@ -235,6 +235,8 @@ entries:
 #
   - title: "DB Automation Toolkits"
     entries:
+      - title: "Automated Oracle VLDB Clone Lifecycle with In-server image backup"
+        url: /database/automation_ora_bkup_clone.html
       - title: "Automated Oracle Clone Lifecycle on GCNV with ASM"
         url: /databases/automation_ora_clone_gcnv_asm.html
       - title: "Automated Oracle Clone Lifecycle on ANF with ASM"
