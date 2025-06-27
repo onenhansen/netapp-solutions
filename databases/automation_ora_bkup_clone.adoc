@@ -3,7 +3,7 @@
 sidebar: sidebar
 permalink: databases/automation_ora_bkup_clone.html
 keywords: Oracle, GCP, GCNV, Database, clone
-summary: "The solution provides an Ansible-based automation toolkit for setting up, cloning, and refreshing Oracle clone databases from an Oracle database image backup copy residing in NetApp cloud volumes, which are available from a public cloud platform. The toolkit initially supports the Google Cloud NetApp Volumes (GCNV) but may be expanded to support other cloud volumes such as Azure NetApp Files (ANF) or Amazon FSx for ONTAP (FSxN)." 
+summary: "The solution provides an Ansible-based automation toolkit for setting up, cloning, and refreshing an Oracle cloned Very Large Database (VLDB) from an Oracle database image backup copy residing in NetApp cloud volumes, which are available from a public cloud platform. The toolkit initially supports the Google Cloud NetApp Volumes (GCNV) but may be expanded to support other cloud volumes such as Azure NetApp Files (ANF) or Amazon FSx for ONTAP (FSxN)." 
 
 ---
 
@@ -17,16 +17,16 @@ summary: "The solution provides an Ansible-based automation toolkit for setting 
 Allen Cao, Niyaz Mohamed, NetApp
 
 [.lead]
-The solution provides an Ansible-based automation toolkit for setting up, cloning, and refreshing Oracle clone databases from an Oracle database image backup copy residing in NetApp cloud volumes, which are available from a public cloud platform. The toolkit initially supports the Google Cloud NetApp Volumes (GCNV) but may be expanded to support other cloud volumes such as Azure NetApp Files (ANF) or Amazon FSx for ONTAP (FSxN).
+The solution provides an Ansible-based automation toolkit for setting up, cloning, and refreshing an Oracle cloned Very Large Database (VLDB) from an Oracle database image backup copy residing in NetApp cloud volumes, which are available from a public cloud platform. The toolkit initially supports the Google Cloud NetApp Volumes (GCNV) but may be expanded to support other cloud volumes such as Azure NetApp Files (ANF) or Amazon FSx for ONTAP (FSxN).
 
 == Purpose
 
-Leveraging the quick clone (minutes) feature of NetApp ONTAP volumes for Oracle VLDB from an in-server database image backup copy in the public cloud serves multiple purposes. It provides a close to real-time full-size production database for reporting or development or UAT purposes. It saves on storage costs particularly when the thin clone of primary data volumes is an option. This Ansible-based automation toolkit empowers users to set up, clone, and refresh cloned Oracle databases on user-desired schedules for streamlined lifecycle management. The toolkit applies to Oracle databases deployed to the Google public cloud using Google Cloud NetApp Volumes (GCNV) storage for in-server image copy backup for quick database restore and recovery in the event of a primary storage failure.  
+Leveraging the quick clone (minutes) feature of NetApp ONTAP volumes for Oracle VLDB from an in-server database image backup copy in the public cloud serves multiple purposes. It provides a near-real-time, full-size production database for reporting, development, or UAT use cases. It saves on storage costs particularly when a thin cloning of the primary database backup volumes is an option. This Ansible-based automation toolkit empowers users to set up, clone, and refresh cloned Oracle databases on user-desired schedules for streamlined lifecycle management. The toolkit is intended for the use case of Oracle VLDB deployed to the Google public cloud and employs GCNV as in-server database backup storage.
 
 This solution addresses the following use cases:
 
-* Setup database clone configuration files for automated Oracle database clone.
-* Create or refresh clone Oracle database from a primary database image backup copy using Ansible playbook on a scheduler.
+* Setup database clone configuration files for automated Oracle database cloning.
+* Create or refresh clone Oracle database from a primary database image backup copy using an Ansible playbook on a scheduler.
 
 == Audience
 
@@ -87,7 +87,7 @@ The toolkit can only be accessed by NetApp internal user with bitbucket access a
 
 ====
 
-The toolkit includes a hosts file which define the source and targets Oracle hosts that the Ansible playbook running against. Usually, it includes the standby DB host in Data Guard setup and the target Oracle clone host. Following is an example file. A host entry includes target host IP address as well as ssh key for user access to the host to execute clone or refresh command. The Google Cloud NetApp Volumes storage is accessed and managed via gcloud cli. 
+The toolkit includes a hosts file which define the source and targets Oracle hosts that the Ansible playbook running against. Usually, it includes the primary database server host and the target clone database server host. Following is an example file. A host entry includes target host IP address as well as ssh key for user access to the host to execute clone or refresh command. The Google Cloud NetApp Volumes storage is accessed and managed via gcloud cli. 
 
  #Oracle hosts
  [ora_prod]
@@ -184,7 +184,7 @@ Host variables are defined in host_vars directory named as {{ host_name }}.yml t
 [%collapsible%open]
 ====
 
-Clone target Oracle server should have the same Oracle software stack as source Oracle server installed and patched. $ORACLE_HOME variable should match with source Oracle server setting. If target ORACLE_HOME setting is different from the primary Oracle server configuration, create a symbolic link to work around the differences. 
+Clone target Oracle server should have the same Oracle software stack as source Oracle server installed and patched. $ORACLE_HOME variable ideally should match with source Oracle server setting. If target ORACLE_HOME setting is different from the primary Oracle server configuration, create a symbolic link to work around the differences. 
 
 If the primary database is configured with ASM, the data files primary group may belong to asm group and the same asm group with same group ID should be added to clone host to avoid permission issue.    
 

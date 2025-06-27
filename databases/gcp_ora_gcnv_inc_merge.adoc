@@ -4041,10 +4041,10 @@ This completes the Oracle VLDB database point-in-time recovery from the backup i
 
 Clone a new Oracle VLDB from the backup image copy on GCNV is similar to the point-in-time recovery of the primary database to a new DB server. NetApp Solutions Engineering team provides an automation toolkit to facilitate the entire processes for a fast (mins) and effortless implementation. 
 
-Following automation toolkit contains a playbook that can be used to create or refresh clones of an Oracle VLDB from a primary database backup image copy stored on GCNV storage via NFS mount for a complete clone lifecycle management.
+Following automation toolkit contains a playbook that can be used to create or refresh clones of an Oracle VLDB from a primary database backup image copy stored on GCNV storage via NFS mount for a complete clone lifecycle management. For details, referred to documentation: link:https://review.docs.netapp.com/us-en/netapp-solutions_ora_bkup_clone/databases/automation_ora_bkup_clone.html[Automated Oracle VLDB Clone Lifecycle with In-server image backup^].
 
 [source, cli]
-https://bitbucket.ngage.netapp.com/projects/NS-BB/repos/na_oracle_clone_gcnv/browse
+https://bitbucket.ngage.netapp.com/mvc/projects/NS-BB/repos/na_oracle_bkup_clone/browse
 
 [NOTE]
 
