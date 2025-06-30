@@ -378,7 +378,7 @@ dd if=/dev/zero of=/oradata/asm/nfs_data_disk03 bs=1M count=20480 oflag=direct
 dd if=/dev/zero of=/oradata/asm/nfs_data_disk04 bs=1M count=20480 oflag=direct
 ....
 
-. As the root user, change data disk file permission to 640
+. Change data disk file permission to 640
 +
 ....
 chmod 640 /oradata/asm/*
@@ -391,7 +391,7 @@ dd if=/dev/zero of=/oralogs/asm/nfs_logs_disk01 bs=1M count=40960 oflag=direct
 dd if=/dev/zero of=/oralogs/asm/nfs_logs_disk02 bs=1M count=40960 oflag=direct
 ....
 
-. As the root user, change logs disk file permission to 640
+. Change logs disk file permission to 640
 +
 ....
 chmod 640 /oralogs/asm/*
