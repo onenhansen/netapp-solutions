@@ -707,7 +707,7 @@ unzip -q /tmp/archive/p6880880_190000_Linux-x86-64.zip
 vi cv/admin/cvu_config
 ....
 
-. Prepare a `gridsetup.rsp` file for silent installation and place the rsp file in the `/tmp/archive` directory. The rsp file should cover sections A, B, and G with the following infomation:
+. Update a `gridsetup.rsp` file for silent installation and place the rsp file in the `/tmp/archive` directory. The rsp file should cover sections A, B, and G with the following infomation:
 +
 ....
 INVENTORY_LOCATION=/u01/app/oraInventory
@@ -796,7 +796,7 @@ systemctl restart multipathd
 /u01/app/oracle/product/19.0.0/grid/gridSetup.sh -executeConfigTools -responseFile /tmp/archive/gridsetup.rsp -silent
 ....
 
-. As the Oracle user, create the LOGS disk group.
+. As the Oracle user, from the $GRID_HOME, create the LOGS disk group.
 +
 ....
 bin/asmca -silent -sysAsmPassword 'yourPWD' -asmsnmpPassword 'yourPWD' -createDiskGroup -diskGroupName LOGS -disk 'AFD:LOGS*' -redundancy EXTERNAL -au_size 4
@@ -886,7 +886,7 @@ vi cv/admin/cvu_config
 unzip p34765931_190000_Linux-x86-64.zip
 ....
 
-. Prepare the DB silent install rsp file in `/tmp/archive/dbinstall.rsp` directory with the following values:
+. Update the DB silent install standard rsp file in `/tmp/archive/dbinstall.rsp` directory with the following values in the relevant sections:
 +
 ....
 oracle.install.option=INSTALL_DB_SWONLY
@@ -916,7 +916,7 @@ oracle.install.db.rootconfig.executeRootScript=false
 /u01/app/oracle/product/19.0.0/db1/root.sh
 ....
 
-. As Oracle user, create the `dbca.rsp` file with the following entries:
+. As Oracle user, update the standard `dbca.rsp` file with the following entries in the relevant sections:
 +
 ....
 gdbName=db1.demo.netapp.com
@@ -942,7 +942,7 @@ automaticMemoryManagement=false
 totalMemory=8192
 ....
 
-. As Oracle user, lauch DB creation with dbca.
+. As Oracle user, from $ORACLE_HOME directory, lauch DB creation with dbca.
 +
 ....
 bin/dbca -silent -createDatabase -responseFile /tmp/archive/dbca.rsp
@@ -1021,7 +1021,7 @@ alias asm='export ORACLE_HOME=/u01/app/oracle/product/19.0.0/grid;export ORACLE_
 . Validate the CDB/PDB created.
 +
 ....
-/home/oracle/.bash_profile
+source /home/oracle/.bash_profile
 
 sqlplus / as sysdba
 
