@@ -234,6 +234,11 @@ entries:
          
   - title: "Use Cases"
     entries:
+      - title: "NetApp AIPod Mini for Enterprise RAG Inferencing with Intel"
+        pdf-filename: "NetApp AIPod Mini for RAG Inferencing"
+        entries:
+          - title: "NetApp AIPod Mini with Intel"
+            url: /ai/ai-minipod.html
       - title: "Responsible AI and confidential inferencing - NetApp AI with Protopia Image Transformation"
         pdf-filename: "Responsible AI and confidential inferencing - NetApp AI with Protopia Image Transformation"
         entries:
