@@ -85,6 +85,8 @@ OpenNebula supports multiple storage backends, but in the context of NetApp inte
 
 == Helpful Commands
 
+These are a few sections of helpful commands that are used in one or more places during setup.
+
 [[iscsi-prereqs]]
 === Host iSCSI & multipath prerequisites
 . Install packages:
@@ -123,7 +125,7 @@ iscsiadm -m node --op update -n node.start -v automatic # auto-login on reboot
 multipath -ll
 ls -l /dev/mapper      # expect dm-mapped ONTAP LUNs
 ----
-NOTE: Do not expect devices unless you have already created the LUN and mapped it to the initiator group.
+*NOTE*: Do not expect devices unless you have already created the LUN and mapped it to the initiator group.
 
 [[nbd-enable]]
 === Host NBD module enable and persistent configuration
@@ -220,7 +222,7 @@ image::opennebula-ontap-image06.png[NFS volume configuration]
 === Virtualization Configuration Tasks
 
 . Mount the NFS export on all OpenNebula hosts in the correct directory (`/var/lib/one/datastores/<ID>`).
-. Use your platform’s tested NFS v4.x options and specify multiple LIFs for resilience. Avoid `soft` / `intr` for VM datastores.
+. Use your platform’s tested NFS v4.x options and specify multiple LIFs for resilience. Avoid `soft` / `intr` for VM datastores. Basic example: `hard,nointr,nfsvers=4.1,sec=sys`
 . Register the NFS-backed datastore in OpenNebula with `DS_MAD=fs` and `TM_MAD=qcow2` (for image) or `TM_MAD=shared` (for system).
 . `qcow2` images support native KVM snapshots and incremental backup.
 . ISO files, kernel/context files, and template overlays can also be stored on NFS datastores for convenience.
